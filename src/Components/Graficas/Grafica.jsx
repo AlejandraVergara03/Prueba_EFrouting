@@ -29,11 +29,11 @@ const Grafica = () => {
   const [error, setError] = useState(null);
   const [barData, setBarData] = useState(null);
   useEffect(() => {
-    // Tomar datos del servidor Node
+    // Tomar datos de la lambda
     fetch('https://q02uvxd8f9.execute-api.us-east-1.amazonaws.com/dev/LlamadaBD', {
-        method: 'GET', // o 'POST' según tu necesidad
+        method: 'GET', 
         headers: {
-            'Content-Type': 'application/json', // Cambia el tipo de contenido si es necesario
+            'Content-Type': 'application/json', 
         },
     })
       .then((response) => {
@@ -48,7 +48,7 @@ const Grafica = () => {
         const bitcoinData = data.filter((crypto) => crypto.symbol === "BTC");
         const ethereumData = data.filter((crypto) => crypto.symbol === "ETH");
 
-        // Etiqueta eje X
+        //  Eje X
         const labels = bitcoinData.map((crypto) =>
           new Date(crypto.last_update).toLocaleString()
         );
@@ -94,10 +94,10 @@ const Grafica = () => {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setError(error.message); // Guardar el mensaje de error
-        setLoading(false); // Cambiar a estado de no carga
+        setError(error.message); 
+        setLoading(false); 
       });
-  }, []); // Agrega un arreglo vacío para que useEffect solo se ejecute una vez al montar el componente
+  }, []);
 
   if (loading) {
     return <p>Cargando datos...</p>;
